@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
             where: { username },
         });
 
-        if (existingUser) {
+        if (!existingUser) {
             return NextResponse.json({ error: "Username already exists" }, { status: 409 });
         }
 
@@ -80,3 +80,5 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }
+
+
