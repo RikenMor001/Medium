@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { ChangeEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -6,17 +7,23 @@ import { useRouter } from "next/navigation";
 export function Signup() {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [error, setError] = useState<string | null>(null);
     const router = useRouter();
 
     const handleClick = async () => {
-        const response = await axios.post("http://localhost:3000/api/user", { username, password });
-        if (response.status === 200) {
-            router.push("/");
+        try {
+            const response = await axios.post("/api/auth/signup", { username, password });
+            if (response.status === 200) {
+                router.push("/");
+            }
+        } catch (err: any) {
+            setError(err.response?.data?.error || "Something went wrong");
         }
-    }
+    };
+
     const Signinpage = () => {
-        router.push("/signin")
-    }
+        router.push("/signin");
+    };
 
     return (
         <div>
@@ -27,13 +34,9 @@ export function Signup() {
                             Create an account
                         </div>
                         <div className="flex justify-center text-slate-500 text-md">
-                            <div>
-                                Already have an account?
-                            </div>
-                            <div className= "hover:text-slate-900">
-                                <button onClick={Signinpage}>
-                                    Sign In
-                                </button>
+                            <div>Already have an account?</div>
+                            <div className="hover:text-slate-900">
+                                <button onClick={Signinpage}>Sign In</button>
                             </div>
                         </div>
                     </div>
@@ -52,10 +55,14 @@ export function Signup() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
+                    {error && (
+                        <div className="text-red-500 text-center mt-2">{error}</div>
+                    )}
                     <div className="flex justify-center">
                         <button
                             className="bg-slate-900 text-white p-2 rounded-lg mt-3 w-1/6 text-center hover:bg-slate-800"
-                            onClick={handleClick}>
+                            onClick={handleClick}
+                        >
                             Sign Up
                         </button>
                     </div>
@@ -70,7 +77,7 @@ export function Signup() {
                             <div className="mt-2 max-w-md text-lg font-semibold text-left text-slate-800">
                                 CEO | Acme corp.
                             </div>
-                            <div className=" max-w-md text-md font-semibold text-left text-slate-500">
+                            <div className="max-w-md text-md font-semibold text-left text-slate-500">
                                 -Riken Patel
                             </div>
                         </div>
@@ -106,4 +113,3 @@ function Input({ label, placeholder, type, onChange }: SignupProps) {
         </div>
     );
 }
-
