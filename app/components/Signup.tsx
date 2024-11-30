@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import { ChangeEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -17,7 +16,7 @@ export function Signup() {
         }
 
         try {
-            const response = await axios.post("http://localhost:3000/api/auth", { username, password });
+            const response = await axios.post("http://localhost:3000/api/auth/signup", { username, password });
             if (response.status === 200) {
                 router.push("/signin");
             }
