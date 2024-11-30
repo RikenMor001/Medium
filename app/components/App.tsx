@@ -27,15 +27,15 @@ export function Appbar() {
                 </div>
             </div>
             <div className="flex">
-                <div className="mr-3 text-md text-slate-500">
+                <div className="mr-3 text-sm text-slate-500">
                     Write
                 </div>
-                <div className="mr-3 text-md text-slate-500">
+                <div className="mr-3 text-sm text-slate-500">
                     Bell
                 </div>
-                <div>
+                <div className="mr-3 text-sm text-slate-500">
                     <button onClick={Signout}>
-                        SignOut
+                        Sign Out
                     </button>
                 </div>
             </div>
@@ -46,9 +46,9 @@ export function Appbar() {
 
 // onChange: (e: ChangeEvent<HTMLInputElement>) => void
 
-interface SearchProps {
-    placeholder: string,
-    type: string,
+interface SearchProps{
+    placeholder: string
+    type: string
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
