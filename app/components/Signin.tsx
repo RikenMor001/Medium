@@ -10,7 +10,7 @@ export function Signin(req:NextRequest, res: NextResponse){
     const router = useRouter();
 
     const handleClick = async () => {
-        const response = await axios.post("http://localhost:3000/api/user", {username, password})
+        const response = await axios.post("http://localhost:3000/api/auth/signin", {username, password})
         if (response.status === 200){
             router.push("/")
         }
@@ -18,6 +18,7 @@ export function Signin(req:NextRequest, res: NextResponse){
     const Signuppage = () => {
         router.push("/signup")
     }
+    
     return <div>
         <div className="flex justify-center bg-slate-100 items-center h-screen flex-col">
             <div className="mb-3">
@@ -42,6 +43,7 @@ export function Signin(req:NextRequest, res: NextResponse){
             placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}
             />
+            
             <Input 
             label = "Password"
             type="password"
@@ -76,7 +78,6 @@ function Input({label, placeholder, type, onChange}: inputTypes){
             placeholder={placeholder}
             type={type}
             onChange={onChange}
-            required
             className="w-full bg-gray-50 text-gray-900 text-sm rounded-lg shadow-lg px-2 py-4 border border-gray-300"
             />
         </div>
