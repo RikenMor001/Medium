@@ -1,10 +1,9 @@
 "use client"
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { NextRequest, NextResponse } from "next/server";
 import { ChangeEvent, useState } from "react";
 
-export function Signin(req:NextRequest, res: NextResponse){
+export function Signin(){
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const router = useRouter();
