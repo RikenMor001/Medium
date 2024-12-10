@@ -33,52 +33,52 @@ export default async function Home() {
               </div>
             </div>
             <div>
-              <div className="text-xl font-bold">
+              <div className="text-2xl font-bold">
                 This is the title of the content
               </div>
-              <div className="text-md text-slate-500">
+              <div className="text-sm font-semibold text-slate-500">
                 This is the actual content, where posts will appear.This is the actual content, where posts will appear 
               </div>
               <br />
-              <div className="text-xl font-bold">
+              <div className="text-2xl font-bold">
                 This is the title of the content
               </div>
-              <div className="text-md text-slate-500">
+              <div className="text-sm font-semibold text-slate-500">
                 This is the actual content, where posts will appear.This is the actual content, where posts will appear 
               </div>
               <br />
-              <div className="text-xl font-bold">
+              <div className="text-2xl font-bold">
                 This is the title of the content
               </div>
-              <div className="text-md text-slate-500">
+              <div className="text-sm font-semibold text-slate-500">
                 This is the actual content, where posts will appear.This is the actual content, where posts will appear 
               </div>
               <br />
-              <div className="text-xl font-bold">
+              <div className="text-2xl font-bold">
                 This is the title of the content
               </div>
-              <div className="text-md text-slate-500">
+              <div className="text-sm font-semibold text-slate-500">
                 This is the actual content, where posts will appear.This is the actual content, where posts will appear 
               </div>
               <br />
-              <div className="text-xl font-bold">
+              <div className="text-2xl font-bold">
                 This is the title of the content
               </div>
-              <div className="text-md text-slate-500">
+              <div className="text-sm font-semibold text-slate-500">
                 This is the actual content, where posts will appear.This is the actual content, where posts will appear 
               </div>
               <br />
-              <div className="text-xl font-bold">
+              <div className="text-2xl font-bold">
                 This is the title of the content
               </div>
-              <div className="text-md text-slate-500">
+              <div className="text-sm font-semibold text-slate-500">
                 This is the actual content, where posts will appear.This is the actual content, where posts will appear 
               </div>
               <br />
-              <div className="text-xl font-bold">
+              <div className="text-2xl font-bold">
                 This is the title of the content
               </div>
-              <div className="text-md text-slate-500">
+              <div className="text-sm font-semibold text-slate-500">
                 This is the actual content, where posts will appear.This is the actual content, where posts will appear 
               </div>
               <br />
