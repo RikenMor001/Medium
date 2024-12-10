@@ -15,7 +15,7 @@ export function Appbar() {
     return <div>
         <div className="flex justify-between items-center text-slate-900 p-3 font-semibold border boder-b">
             <div className="flex justify-center items-center">
-                <div className="text-2xl">
+                <div className="text-3xl">
                     Medium 
                 </div>
                 <div>
@@ -54,11 +54,11 @@ interface SearchProps{
 
 function Input({placeholder, type, onChange}: SearchProps){
     return <div>
-        <input
+        <input        
             placeholder = { placeholder }
             type = { type }
             onChange = {onChange}
-            className="mt-1 ml-3 text-sm text-slate-500 rounded-lg bg-slate-100 py-2 px-2 font-semibold border border-slate-200"
+            className="mt-1 ml-3 text-sm text-black rounded-3xl bg-slate-100 py-2 px-2 font-semibold border border-slate-200 pl-5"
         />
     </div>        
 }
