@@ -1,0 +1,14 @@
+Commands to install and run next js locally 
+
+- npx create-app-next@latest
+- mkdir "random"
+- cd random
+- create a prisma schema 
+--------------------------
+- npm I prisma 
+- npx prisma init 
+- (Than define the prisma.Schema)
+- Migrate the prisma folder by typing 
+- npx prisma migrate dev --name init_schema
+- (After defining the prisma.schema file structure, generate the prisma)
+- npx prisma generate
