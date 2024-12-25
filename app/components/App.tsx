@@ -6,10 +6,23 @@ import { ChangeEvent, useState } from "react";
 export function Appbar() {
     const router = useRouter();
     const [ serach, setSearch ] = useState<string>(" ");
+    const [ suggestion, setSuggestions ] = useState<boolean>(false);
+    
+    const suggestions = ["Suggestion 1", "Suggestion 2", "Suggestion 3", "Suggestion 4", "Suggestion 5"];
 
     function Signout(){
         signOut();
         router.push("/signin")
+    }
+
+    function setSearchHandleClick(e: ChangeEvent<HTMLInputElement>){
+        setSearch(e.target.value);
+        setSuggestions(true);
+    }
+
+    function suggestionHandleClick(suggestions: string){
+        setSearch(suggestions);
+        setSuggestions(false);
     }
 
     return <div>
@@ -44,7 +57,6 @@ export function Appbar() {
     </div> 
 }
 
-// onChange: (e: ChangeEvent<HTMLInputElement>) => void
 
 interface SearchProps{
     placeholder: string
