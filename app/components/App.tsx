@@ -8,7 +8,7 @@ export function Appbar() {
     const [search, setSearch] = useState<string>("");
     const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
 
-    const suggestions = ["React", "Next.js", "TypeScript", "JavaScript", "Node.js"];
+    const suggestions = ["Applications", "Books", "Christmas", "Diamond", "English", "Football", "Geography", "HarveySpecter", "Italy","Joker", "KillianMBappe", "LeoMessi", "Messi", "Nigga", "Operations", "Palace", "Quest", "RIKEN", "Sexy", "Tortoise", "UVRays", "Violet", "Welcome", "Xmas", "Yyz", "Zebra"];
 
     function handleSignOut() {
         signOut();
