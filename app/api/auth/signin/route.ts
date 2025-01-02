@@ -1,64 +1,35 @@
-import { PrismaClient } from "@prisma/client";
-import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
+import { NextResponse } from 'next/server';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { PrismaClient } from '@prisma/client';
 
-declare global {
-  var prisma: PrismaClient | undefined;
-}
+const prisma = new PrismaClient();
+const JWT_SECRET = process.env.JWT_SECRET || 'kingRiken';
 
-let prisma: PrismaClient;
-
-if (process.env.NODE_ENV === "production") {
-  prisma = new PrismaClient();
-} else {
-  if (!global.prisma) {
-    global.prisma = new PrismaClient();
-  }
-  prisma = global.prisma;
-}
-
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
     const { username, password } = await req.json();
-
     if (!username || !password) {
-      return NextResponse.json(
-        { error: "Username and password are required." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Email and password are required' }, { status: 400 });
     }
 
     const user = await prisma.user.findUnique({
       where: { username },
     });
-
     if (!user) {
-      return NextResponse.json(
-        { error: "User not found." },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
     }
 
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
-
-    if (!isPasswordCorrect) {
-      return NextResponse.json(
-        { error: "Incorrect password." },
-        { status: 401 }
-      );
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
     }
 
-    return NextResponse.json(
-      { message: "User logged in successfully." },
-      { status: 200 }
-    );
-  } catch (error: any) {
-    console.error("Login error:", error);
-    return NextResponse.json(
-      { error: "An unexpected error occurred. Please try again later." },
-      { status: 500 }
-    );
-  } finally {
-    await prisma.$disconnect(); 
+    const token = jwt.sign({ id: user.id, email: user.username }, JWT_SECRET);
+
+    return NextResponse.json({ message: 'Sign-in successful', token });
+  } catch (error) {
+    console.error('Sign-in error:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
