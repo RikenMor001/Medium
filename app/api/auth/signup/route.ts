@@ -1,51 +1,51 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcryptjs"; 
+import  bcrypt  from "bcrypt"
+import jwt from "jsonwebtoken"
 
 const prisma = new PrismaClient();
+const JWT_SECRET = process.env.JWT_SECRET || "kingRiken"
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest){
     try {
         const { username, password } = await req.json();
-
-        if (!username || !password) {
-            return NextResponse.json(
-                { error: "Username and password are required." },
-                { status: 400 }
-            );
+    
+        if (!username || !password){
+            NextResponse.json({
+                error: "Invalid username or password"
+            }, { status: 400 })
         }
-
-        const existingUser = await prisma.user.findUnique({
-            where: { username },
-        });
-
-        if (existingUser) {
-            return NextResponse.json(
-                { error: "User already exists." },
-                { status: 409 } 
-            );
+        const existsingUser = await prisma.user.findUnique({
+            where: {
+                username: username
+            }
+        })
+        
+        if (existsingUser){
+            NextResponse.json({
+                error: "Invalid username or password"
+            }, { status: 400 })
         }
-
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        await prisma.user.create({
+    
+        const hashingPassword = await bcrypt.hash(password, 10);
+    
+        const newUser = await prisma.user.create({
             data: {
-                username,
-                password: hashedPassword,
-            },
-        });
-
-        return NextResponse.json(
-            { message: "User created successfully and added to the database." },
-            { status: 201 } 
-        );
-    } catch (error: any) {
-        console.error("Error creating user:", error); 
-        return NextResponse.json(
-            { error: "An unexpected error occurred. Please try again later." },
-            { status: 500 }
-        );
-    } finally {
-        await prisma.$disconnect(); 
+                username: username,
+                password: hashingPassword
+            }
+        })
+    
+        const jwtToken = jwt.sign({
+            id: newUser.id
+        }, JWT_SECRET)
+        return NextResponse.json({
+            message: "User created successfully!", jwtToken 
+        })
+    }
+    catch(error: any){
+        NextResponse.json({
+            error: "There was an error while doing this process"
+        }, {status: 403})
     }
 }
