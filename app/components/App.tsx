@@ -25,7 +25,7 @@ export function Appbar() {
 
     return (
         <div>
-            <div className="flex justify-between items-center text-slate-900 p-3 font-semibold border border-b">
+            <div className="flex justify-between items-center text-slate-900 p-3 font-semibold border border-b shadow-lg border-b-gray-200">
                 <div className="flex justify-center items-center">
                     <div className="text-3xl">Medium</div>
                     <div className="relative">
@@ -57,8 +57,8 @@ export function Appbar() {
                 <div className="flex">
                     <div className="mr-3 text-sm text-slate-500">Write</div>
                     <div className="mr-3 text-sm text-slate-500">Bell</div>
-                    <div className="mr-3 text-sm text-slate-500">
-                        <button onClick={handleSignOut}>Sign Out</button>
+                    <div className="mr-3 text-sm text-slate-800">
+                        <button onClick={ handleSignOut }>LogOut</button>
                     </div>
                 </div>
             </div>
