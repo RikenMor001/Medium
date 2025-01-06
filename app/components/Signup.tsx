@@ -16,7 +16,7 @@ export function Signup() {
         }
 
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/signup`, { username, password });
+            const response = await axios.post("http://localhost:3000/api/signup", { username, password });
             if (response.status === 200) {
                 router.push("/signin");
             }
