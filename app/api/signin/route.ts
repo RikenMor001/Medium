@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 export async function POST(req: NextRequest){
+    try {
     const { username, password } = await req.json();
     const user = await prisma.user.findUnique({
         where: {
@@ -23,4 +24,17 @@ export async function POST(req: NextRequest){
             error: "Incorrect password"
         }, {status: 401})
     }
+
+    return NextResponse.json({
+        message: "Login successuful",
+        user: {
+            id: user.id,
+            username: user.username
+        }
+    }, {status:201})
+} catch(error: any){
+    return NextResponse.json({
+        error: error.message
+    }, {status: 500})
+}
 }
