@@ -108,11 +108,10 @@ function Input({ id, label, placeholder, type, onChange }: SignupProps) {
     return (
         <div className="flex flex-col items-center text-center w-full">
             <div className="text-lg font-bold p-2">
-                <label htmlFor={id}>{label}</label>
+                <label>{label}</label>
             </div>
             <div className="w-1/2">
                 <input
-                    id={id}
                     placeholder={placeholder}
                     type={type}
                     onChange={onChange}
