@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
-export function Signin() {
+export default function Signin() {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const router = useRouter();
@@ -14,7 +14,7 @@ export function Signin() {
             return;
         }
         try {
-            const response = await axios.post("http://localhost:3000/api/signin", { username, password });
+            const response = await axios.post("api/signin", { username, password });
             if (response.status === 200) {
                 router.push("/");
             }
@@ -72,15 +72,13 @@ interface inputTypes {
 }
 
 function Input({ label, placeholder, type, onChange }: inputTypes) {
-    const id = label.toLowerCase().replace(/\s+/g, '-');
     return (
         <div className="flex justify-center items-center flex-col w-full">
             <div className="font-bold text-lg p-2">
-                <label htmlFor={id}>{label}</label>
+                <label>{label}</label>
             </div>
             <div className="w-1/5">
                 <input
-                    id={id}
                     placeholder={placeholder}
                     type={type}
                     onChange={onChange}
