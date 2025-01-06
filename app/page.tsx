@@ -1,11 +1,10 @@
 import Image from "next/image";
-import { Appbar } from "./components/App";
+import { Appbar } from "./components/appbar";
 
-export default async function Home() {
+export default function Home() {
   return (
     <div>
-      <Appbar />
-      
+      <Appbar/>      
       <div className="flex justify-center font-light text-black text-sm p-3 border-b">
         Get unlimited access to the best of Medium for less than $1/week.
       </div>
