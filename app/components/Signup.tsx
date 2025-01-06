@@ -2,37 +2,39 @@
 import { ChangeEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { NextResponse } from "next/server";
 
-export function Signup() {
+export default function Signup() {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [error, setError] = useState<string | null>(null);
     const router = useRouter();
 
     const handleClick = async () => {
-        if (!username || !password) {
-            setError("Both fields are required.");
+        if (!username || !password ){
+            alert("Please fill in all fields.");
             return;
         }
-
-        try {
-            const response = await axios.post("http://localhost:3000/api/signup", { username, password });
-            if (response.status === 200) {
+        try{
+            const response = await axios.post("/api/signup", {
+                username, 
+                password
+            })
+            if (response.status === 200){
                 router.push("/signin");
             }
-        } catch (err: any) {
-            if (err.response) {
-                setError(err.response?.data?.error || "Something went wrong");
-            } else if (err.request) {
-                setError("Network error. Please try again later.");
-            } else {
-                setError("An unexpected error occurred.");
+            else {
+                alert("Sign-up failed. Please check your credentials.");
             }
+        } catch(error: any){
+            return NextResponse.json({
+                error: error.message
+            })
         }
-    };
+        
+    }
 
-    const Signinpage = () => {
-        router.push("/signin");
+    const Signuppage = () => {
+        router.push("/signup");
     };
 
     return (
@@ -44,7 +46,9 @@ export function Signup() {
                         <div className="flex justify-center text-slate-500 text-md">
                             <div>Already have an account?</div>
                             <div className="hover:text-slate-900">
-                                <button onClick={Signinpage}>Sign In</button>
+                                <button onClick={ Signuppage }>
+                                    Sign In
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -65,11 +69,10 @@ export function Signup() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    {error && <div className="text-red-500 text-center mt-2">{error}</div>}
                     <div className="flex justify-center">
                         <button
                             className="bg-slate-900 text-white p-2 rounded-lg mt-3 w-1/6 text-center hover:bg-slate-800"
-                            onClick={handleClick}
+                            onClick={ handleClick }
                         >
                             Sign Up
                         </button>
