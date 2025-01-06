@@ -14,7 +14,7 @@ export function Signin() {
             return;
         }
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/signin`, { username, password });
+            const response = await axios.post("http://localhost:3000/api/signin", { username, password });
             if (response.status === 200) {
                 router.push("/");
             }
@@ -22,6 +22,10 @@ export function Signin() {
             console.error("Sign-in failed:", error);
             alert("Sign-in failed. Please check your credentials.");
         }
+    };
+
+    const Signuppage = () => {
+        router.push("/signup");
     };
 
     return (
@@ -34,7 +38,7 @@ export function Signin() {
                     <div className="flex justify-center items-center text-slate-500">
                         <div>Don&apos;t have an account?</div>
                         <span className="hover:text-slate-900">
-                            <button onClick={handleClick}>Sign Up</button>
+                            <button onClick={ Signuppage }>Sign Up</button>
                         </span>
                     </div>
                 </div>
