@@ -1,5 +1,4 @@
 "use client";
-import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
@@ -11,7 +10,6 @@ export function Appbar() {
     const suggestions = ["Applications", "Books", "Christmas", "Diamond", "English", "Football", "Geography", "HarveySpecter", "Italy","Joker", "KillianMBappe", "LeoMessi", "Messi", "Nigga", "Operations", "Palace", "Quest", "RIKEN", "Sexy", "Tortoise", "UVRays", "Violet", "Welcome", "Xmas", "Yyz", "Zebra"];
 
     function handleSignOut() {
-        signOut();
         router.push("/signin");
     }
 
