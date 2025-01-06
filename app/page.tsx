@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div>
       <Appbar/>      
-      <div className="flex justify-center font-light text-black text-sm p-3 border-b">
+      <div className="flex justify-center font-light text-black text-sm p-3 border border-b-slate-300 shadow-sm">
         Get unlimited access to the best of Medium for less than $1/week.
       </div>
       
@@ -13,10 +13,10 @@ export default function Home() {
         <div className="ml-3 h-screen grid grid-cols-[65%_35%] flex justify-center items-start">
           <div>
             <div className="flex text-sm mb-10 border-b">
-              <div className="m-3 text-slate-500 hover:text-slate-900">
+              <div className="m-3 text-slate-500 hover:text-slate-900 font-semibold">
                 <button>Follow</button>
               </div>
-              <div className="m-3 text-slate-500 hover:text-slate-900">
+              <div className="m-3 text-slate-500 hover:text-slate-900 font-semibold">
                 <button>Following</button>
               </div>
             </div>
@@ -75,11 +75,11 @@ export default function Home() {
 
           <div className="text-md h-screen border-l p-5">
             <div className="mb-8">
-              <h2 className="text-md font-semibold mb-4">Staff Picks</h2>
+              <h2 className="text-md font-bold mb-4">Staff Picks</h2>
               <div className="m-2">
                 <ul>
                   <li className="text-md mb-4">
-                    <a className="text-slate-900 hover:text-slate-500 font-bold hover:cursor-pointer">How to Become a Better Writer</a>
+                    <a className="text-slate-700 hover:text-slate-500 font-semibold hover:cursor-pointer">How to Become a Better Writer?</a>
                     <div>
                       <div className="text-sm text-slate-500">
                         Becoming a better writer requires a lot of practice and patience. It&apos;s not something that can be done overnight. But it&apos;s something that you can do every day.
@@ -88,14 +88,14 @@ export default function Home() {
                   </li>
 
                   <li className="text-md mb-4">
-                    <a className="text-slate-900 hover:text-slate-500 font-bold hover:cursor-pointer">A tip for Effective Remote Work</a>
+                    <a className="text-slate-700 hover:text-slate-500 font-semibold hover:cursor-pointer">A tip for Effective Remote Work</a>
                     <div className="text-sm text-slate-500">
                       Communicate with your team members and clients through video conferencing. This will help you to build better relationships with them.
                     </div>
                   </li>
 
                   <li className="text-md mb-4">
-                    <a className="text-slate-900 hover:text-slate-500 font-bold hover:cursor-pointer">Mastering JavaScript in 2024</a>
+                    <a className="text-slate-700 hover:text-slate-500 font-semibold hover:cursor-pointer">Mastering JavaScript in 2024</a>
                     <div className="text-sm text-slate-500">
                       Mastering JavaScript in 2024 is a challenging but rewarding task. It requires a lot of practice and patience. But with the right mindset and approach, you can achieve it.
                     </div>
