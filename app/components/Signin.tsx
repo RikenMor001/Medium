@@ -14,8 +14,8 @@ export default function Signin() {
             return;
         }
         try {
-            const response = await axios.post("api/signin", { username, password });
-            if (response.status === 200) {
+            const response = await axios.post("/api/signin", { username, password });
+            if (response.status === 201) {
                 router.push("/");
             }
         } catch (error) {
